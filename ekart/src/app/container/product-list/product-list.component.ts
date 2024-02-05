@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'product-list',
@@ -7,13 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ProductListComponent {
 
-  handleImageError(event: any): void {
-    const productItem = event.target.closest('.ekart--product--item');
-    if (productItem) {
-      productItem.style.display = 'none'; // Hide the entire product item
-    }
-
-  }
 
   products = [
     {
@@ -541,4 +534,16 @@ export class ProductListComponent {
       slug: "michael-feburary-sk8-hi"
     }
   ];
+
+  selectedFilterRadioButton: string = 'all'
+
+  totalProductCount = this.products.length
+  totalProductInStock = this.products.filter(val => val.is_in_inventory === true).length
+  totalProductOutOfStock = this.products.filter(val => val.is_in_inventory === false).length
+  onFilterChanged(value: string) {
+    this.selectedFilterRadioButton = value
+  }
+
+  @Input()
+  searchText: string = ''
 }
