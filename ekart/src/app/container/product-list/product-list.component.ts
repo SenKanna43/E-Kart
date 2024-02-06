@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/Models/Product';
 
 @Component({
   selector: 'product-list',
@@ -7,6 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductListComponent {
 
+  selectedProduct !: Product
 
   products = [
     {
